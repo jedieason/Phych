@@ -17,40 +17,87 @@
         /* 全局樣式 */
         body {
             font-family: 'Noto Serif TC', serif;
-            background: url('https://i.imgur.com/YourTraditionalBackground.jpg') no-repeat center center fixed;
-            background-size: cover;
+            background: #f9f9f9;
             color: #333;
             overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-        /* 半透明覆蓋層 */
-        .overlay {
+        /* 標題欄 */
+        header {
+            width: 100%;
+            background-color: #fff;
+            padding: 20px 40px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.7);
-            z-index: -1;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        /* 容器 */
+        header .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        header .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        header .logo h1 {
+            font-size: 24px;
+            color: #2c3e50;
+        }
+
+        /* 導航欄 */
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #e74c3c;
+        }
+
+        /* 主內容 */
+        .main-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 150px 20px 50px; /* 頂部留出標題欄空間 */
+            background: #f4f4f4;
+        }
+
         .container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
             max-width: 1200px;
-            margin: 100px auto;
+            width: 100%;
             padding: 20px;
-            animation: fadeIn 2s ease-in-out;
+            animation: fadeIn 1.5s ease-in-out;
         }
 
         /* 主題按鈕 */
         .topic-button {
-            background: rgba(255, 255, 255, 0.9);
+            background: #fff;
             border: 2px solid #c0c0c0;
-            border-radius: 20px;
-            padding: 30px;
+            border-radius: 15px;
+            padding: 30px 20px;
             text-align: center;
             cursor: pointer;
             transition: transform 0.3s, box-shadow 0.3s;
@@ -60,7 +107,7 @@
         }
 
         .topic-button:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
             box-shadow: 0 12px 24px rgba(0,0,0,0.2);
         }
 
@@ -69,7 +116,6 @@
             font-family: 'Roboto', sans-serif;
             color: #2c3e50;
             font-size: 20px;
-            margin-bottom: 15px;
             transition: color 0.3s;
         }
 
@@ -86,25 +132,66 @@
             width: 200%;
             height: 200%;
             background: url('https://i.imgur.com/YourPattern.png') repeat;
-            opacity: 0.1;
+            opacity: 0.05;
             transform: rotate(45deg);
-            transition: transform 0.5s;
+            transition: transform 0.5s, opacity 0.5s;
         }
 
         .topic-button:hover::before {
             transform: rotate(0deg);
-            opacity: 0.2;
+            opacity: 0.1;
+        }
+
+        /* 頁腳 */
+        footer {
+            background-color: #fff;
+            padding: 20px 40px;
+            text-align: center;
+            box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+        }
+
+        footer p {
+            font-size: 14px;
+            color: #777;
+        }
+
+        footer .social-links {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        footer .social-links a {
+            text-decoration: none;
+            color: #777;
+            transition: color 0.3s;
+        }
+
+        footer .social-links a:hover {
+            color: #e74c3c;
         }
 
         /* 響應式設計 */
         @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+
+            header .logo h1 {
+                font-size: 20px;
+            }
+
+            nav {
+                display: none; /* 簡化手機版導航 */
+            }
+
             .container {
-                margin: 50px auto;
-                grid-template-columns: 1fr;
+                gap: 20px;
             }
 
             .topic-button {
-                padding: 20px;
+                padding: 20px 15px;
             }
 
             .topic-button h2 {
@@ -120,41 +207,63 @@
     </style>
 </head>
 <body>
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="topic-button" onclick="openPage('學習、記憶與老化.html')">
-            <h2>學習、記憶與老化</h2>
+    <!-- 標題欄 -->
+    <header>
+        <div class="logo">
+            <img src="https://i.imgur.com/YourLogo.png" alt="網站標誌">
+            <h1>心理學導覽</h1>
         </div>
-        <div class="topic-button" onclick="openPage('性格與動機 考前重點整理秘笈.html')">
-            <h2>性格與動機 考前重點</h2>
-        </div>
-        <div class="topic-button" onclick="openPage('發展心理學.html')">
-            <h2>發展心理學</h2>
-        </div>
-        <div class="topic-button" onclick="openPage('社會心理學.html')">
-            <h2>社會心理學</h2>
-        </div>
-        <div class="topic-button" onclick="openPage('認知心理學與測謊應用.html')">
-            <h2>認知心理與測謊</h2>
-        </div>
-        <div class="topic-button" onclick="openPage('遺忘與虛假記憶.html')">
-            <h2>遺忘與虛假記憶</h2>
+        <nav>
+            <a href="#">首頁</a>
+            <a href="#">關於我們</a>
+            <a href="#">聯繫我們</a>
+        </nav>
+    </header>
+
+    <!-- 主內容 -->
+    <div class="main-content">
+        <div class="container">
+            <div class="topic-button" onclick="openPage('學習、記憶與老化.html')">
+                <h2>學習、記憶與老化</h2>
+            </div>
+            <div class="topic-button" onclick="openPage('性格與動機 考前重點整理秘笈.html')">
+                <h2>性格與動機 考前重點</h2>
+            </div>
+            <div class="topic-button" onclick="openPage('發展心理學.html')">
+                <h2>發展心理學</h2>
+            </div>
+            <div class="topic-button" onclick="openPage('社會心理學.html')">
+                <h2>社會心理學</h2>
+            </div>
+            <div class="topic-button" onclick="openPage('認知心理學與測謊應用.html')">
+                <h2>認知心理與測謊</h2>
+            </div>
+            <div class="topic-button" onclick="openPage('遺忘與虛假記憶.html')">
+                <h2>遺忘與虛假記憶</h2>
+            </div>
         </div>
     </div>
+
+    <!-- 頁腳 -->
+    <footer>
+        <p>&copy; 2024 Jedieason. 版權所有。</p>
+        <div class="social-links">
+            <a href="#" aria-label="Facebook">
+                <img src="https://i.imgur.com/FacebookIcon.png" alt="Facebook" height="20">
+            </a>
+            <a href="#" aria-label="Twitter">
+                <img src="https://i.imgur.com/TwitterIcon.png" alt="Twitter" height="20">
+            </a>
+            <a href="#" aria-label="Instagram">
+                <img src="https://i.imgur.com/InstagramIcon.png" alt="Instagram" height="20">
+            </a>
+        </div>
+    </footer>
 
     <script>
         function openPage(filename) {
             window.location.href = filename;
         }
-
-        // 可選：添加按鈕點擊音效
-        document.querySelectorAll('.topic-button').forEach(button => {
-            button.addEventListener('click', () => {
-                const clickSound = new Audio('https://www.soundjay.com/buttons/sounds/button-3.mp3');
-                clickSound.volume = 0.3;
-                clickSound.play();
-            });
-        });
     </script>
 </body>
 </html>
