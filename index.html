@@ -3,91 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <title>心理學主題導覽</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 引入Google字體 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* 重置樣式 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
+        /* 全局樣式 */
         body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #f6f8f9 0%, #e5ebee 100%);
-        }
-        .container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            max-width: 800px;
-            padding: 30px;
-        }
-        .topic-button {
-            background-color: white;
-            border: 2px solid #e0e0e0;
-            border-radius: 15px;
-            padding: 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            position: relative;
-            overflow: hidden;
-        }
-        .topic-button:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        .topic-button h2 {
+            font-family: 'Noto Serif TC', serif;
+            background: url('https://i.imgur.com/YourTraditionalBackground.jpg') no-repeat center center fixed;
+            background-size: cover;
             color: #333;
-            font-size: 18px;
-            margin-bottom: 10px;
-            position: relative;
-            z-index: 2;
+            overflow-x: hidden;
         }
-        .topic-button .overlay {
-            position: absolute;
+
+        /* 半透明覆蓋層 */
+        .overlay {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(230,230,250,0.3));
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 1;
+            background: rgba(255, 255, 255, 0.7);
+            z-index: -1;
         }
-        .topic-button:hover .overlay {
-            opacity: 1;
+
+        /* 容器 */
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        /* 主題按鈕 */
+        .topic-button {
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid #c0c0c0;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .topic-button:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+        }
+
+        /* 按鈕標題 */
+        .topic-button h2 {
+            font-family: 'Roboto', sans-serif;
+            color: #2c3e50;
+            font-size: 20px;
+            margin-bottom: 15px;
+            transition: color 0.3s;
+        }
+
+        .topic-button:hover h2 {
+            color: #e74c3c;
+        }
+
+        /* 按鈕圖案 */
+        .topic-button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('https://i.imgur.com/YourPattern.png') repeat;
+            opacity: 0.1;
+            transform: rotate(45deg);
+            transition: transform 0.5s;
+        }
+
+        .topic-button:hover::before {
+            transform: rotate(0deg);
+            opacity: 0.2;
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            .container {
+                margin: 50px auto;
+                grid-template-columns: 1fr;
+            }
+
+            .topic-button {
+                padding: 20px;
+            }
+
+            .topic-button h2 {
+                font-size: 18px;
+            }
+        }
+
+        /* 動畫效果 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
+    <div class="overlay"></div>
     <div class="container">
         <div class="topic-button" onclick="openPage('學習、記憶與老化.html')">
-            <div class="overlay"></div>
             <h2>學習、記憶與老化</h2>
         </div>
         <div class="topic-button" onclick="openPage('性格與動機 考前重點整理秘笈.html')">
-            <div class="overlay"></div>
             <h2>性格與動機 考前重點</h2>
         </div>
         <div class="topic-button" onclick="openPage('發展心理學.html')">
-            <div class="overlay"></div>
             <h2>發展心理學</h2>
         </div>
         <div class="topic-button" onclick="openPage('社會心理學.html')">
-            <div class="overlay"></div>
             <h2>社會心理學</h2>
         </div>
         <div class="topic-button" onclick="openPage('認知心理學與測謊應用.html')">
-            <div class="overlay"></div>
             <h2>認知心理與測謊</h2>
         </div>
         <div class="topic-button" onclick="openPage('遺忘與虛假記憶.html')">
-            <div class="overlay"></div>
             <h2>遺忘與虛假記憶</h2>
         </div>
     </div>
@@ -97,12 +147,12 @@
             window.location.href = filename;
         }
 
-        // Optional: Add subtle hover sound effect
+        // 可選：添加按鈕點擊音效
         document.querySelectorAll('.topic-button').forEach(button => {
-            button.addEventListener('mouseenter', () => {
-                const hoverSound = new Audio('data:audio/wav;base64,SUQsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==');
-                hoverSound.volume = 0.1;
-                hoverSound.play();
+            button.addEventListener('click', () => {
+                const clickSound = new Audio('https://www.soundjay.com/buttons/sounds/button-3.mp3');
+                clickSound.volume = 0.3;
+                clickSound.play();
             });
         });
     </script>
