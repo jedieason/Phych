@@ -1,0 +1,103 @@
+/* Reset and base styles */
+body {
+    font-family: 'Noto Serif TC', serif;
+    line-height: 1.6;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+/* Headings */
+h2 {
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+    margin-top: 40px;
+    font-size: 2em;
+    font-weight: 600;
+}
+
+h3 {
+    color: #34495e;
+    margin-top: 30px;
+    font-size: 1.5em;
+    font-weight: 500;
+}
+
+/* Lists */
+ul {
+    padding-left: 30px;
+    margin-bottom: 20px;
+}
+
+ul ul {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+li {
+    margin-bottom: 10px;
+    line-height: 1.7;
+}
+
+/* Strong/Emphasis */
+strong {
+    color: #2980b9;
+    font-weight: 600;
+}
+
+/* Horizontal Rule */
+hr {
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    margin: 30px 0;
+}
+
+/* Exam Hint Section */
+p:contains('考試叮嚀') {
+    background-color: #f0f4f8;
+    border-left: 5px solid #3498db;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+    
+    h2 {
+        font-size: 1.6em;
+    }
+    
+    h3 {
+        font-size: 1.3em;
+    }
+}
+
+/* Scrollbar (for webkit browsers) */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Selection Style */
+::selection {
+    background-color: #3498db;
+    color: white;
+}
